@@ -13,9 +13,10 @@ void UBullCowCartridge::BeginPlay()
     // Start Game
     SetupGame();
     
-    //DebugLine
-    PrintLine(TEXT("The Number Of Possible Words Are: %i"), HiddenWords.Num()); 
-    PrintLine(TEXT("The Number Of Valid Words Are: %i"), Isograms.Num());
+    //Debug Lines
+    // PrintLine(TEXT("The Number Of Possible Words Are: %i"), HiddenWords.Num()); 
+    // PrintLine(TEXT("The Number Of Valid Words Are: %i"), Isograms.Num());
+    PrintLine(TEXT("The Hidden Word Is: %s."), *HiddenWord);
 }
 
 
@@ -30,7 +31,7 @@ void UBullCowCartridge::OnInput(const FString& PlayerInput)
         SetupGame();
     }
 
-    // If Not Over, Process Guess
+    // If Not Over, Process Player's Guess
     else 
     {
         ProcessGuess(PlayerInput);
@@ -54,7 +55,7 @@ void UBullCowCartridge::SetupGame() {
     HiddenWordCount = HiddenWord.Len();
 
     // Set Lives To Equal Length of HiddenWord
-    Lives = HiddenWordCount;  
+    Lives = HiddenWordCount * 2;  
 
     // Show Hidden Word Characters
     PrintLine(TEXT("Guess The Hidden Word of %i Characters"), HiddenWordCount);
@@ -117,6 +118,10 @@ void UBullCowCartridge::ProcessGuess(const FString& Guess) {
             PrintLine(TEXT("You Have No Lives Left. You Lose!"));
             EndGame();
         }
+
+        // Show Bulls and Cows Score For Player's Guess
+        FBullCowCount PlayerScore = GetBullCows(Guess);
+        PrintLine(TEXT("You Have %i Bulls and %i Cows."), PlayerScore.Bulls, PlayerScore.Cows);
 }
 
 // Check If Guess Is Isogram
@@ -151,4 +156,30 @@ TArray<FString> UBullCowCartridge::GetValidWords(const TArray<FString>& WordList
     }
     
     return ValidWords;  
+}
+
+FBullCowCount UBullCowCartridge::GetBullCows(const FString& PlayerGuess) const {
+
+    FBullCowCount Count;
+ 
+    for (int32 GuessIndex = 0; GuessIndex < PlayerGuess.Len(); GuessIndex++)
+    {
+        // If matching letters in their right positions, add bulls
+        if (PlayerGuess[GuessIndex] == HiddenWord[GuessIndex])
+        {
+            Count.Bulls++;
+            continue;
+        }
+
+        for (int32 HiddenIndex = 0; HiddenIndex < HiddenWord.Len(); HiddenIndex++)
+        {
+            // If matching letters in different positions, add cows
+            if (PlayerGuess[GuessIndex] == HiddenWord[HiddenIndex])
+            {
+                Count.Cows++;
+                break;
+            }
+        }
+    } 
+    return Count;
 }
