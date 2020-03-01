@@ -158,6 +158,7 @@ TArray<FString> UBullCowCartridge::GetValidWords(const TArray<FString>& WordList
     return ValidWords;  
 }
 
+// Get BullCowCount
 FBullCowCount UBullCowCartridge::GetBullCows(const FString& PlayerGuess) const {
 
     FBullCowCount Count;
