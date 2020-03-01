@@ -16,7 +16,7 @@ void UBullCowCartridge::BeginPlay()
     //Debug Lines
     // PrintLine(TEXT("The Number Of Possible Words Are: %i"), HiddenWords.Num()); 
     // PrintLine(TEXT("The Number Of Valid Words Are: %i"), Isograms.Num());
-    PrintLine(TEXT("The Hidden Word Is: %s."), *HiddenWord);
+    // PrintLine(TEXT("The Hidden Word Is: %s."), *HiddenWord);
 }
 
 
@@ -46,7 +46,7 @@ void UBullCowCartridge::SetupGame() {
     bGameOver = false;
 
     // Welcome Player
-    PrintLine(TEXT("Welcome To the Bulls and Cows Game!"));
+    PrintLine(TEXT("Welcome to The Bulls and Cows Game!"));
    
     // Set Hidden Word
     HiddenWord = Isograms[FMath::RandRange(0, Isograms.Num() - 1)] ;
@@ -58,13 +58,13 @@ void UBullCowCartridge::SetupGame() {
     Lives = HiddenWordCount * 2;  
 
     // Show Hidden Word Characters
-    PrintLine(TEXT("Guess The Hidden Word of %i Characters"), HiddenWordCount);
+    PrintLine(TEXT("Guess The Hidden Word of %i Characters."), HiddenWordCount);
 
     // Show Lives Count
-    PrintLine(TEXT("You Have %i Lives"), Lives);
+    PrintLine(TEXT("You Have %i Lives."), Lives);
 
     // Prompt To Type Guess
-    PrintLine(TEXT("Type In Your Guess:"));
+    PrintLine(TEXT("Press Tab to Type In Your Guess:"));
 
 }
 
@@ -106,7 +106,6 @@ void UBullCowCartridge::ProcessGuess(const FString& Guess) {
             PrintLine(TEXT("The Word Has No Repeating Letters."));
             PrintLine(TEXT("Try Again or Hit \"Esc\" to Exit."));
             return;
-            /* code */
         }
  
         --Lives;
@@ -141,11 +140,11 @@ bool UBullCowCartridge::IsIsogram(const FString& Word) const {
   return true;  
 }
 
-//Store Valid Isograms
 TArray<FString> UBullCowCartridge::GetValidWords(const TArray<FString>& WordList) const {
 
     TArray<FString> ValidWords;
 
+    // Check If Word Is Valid Isograms And Store It
     for (FString CurrentWord : WordList)
     {
         if(CurrentWord.Len() >= 4 && IsIsogram(CurrentWord)) {
