@@ -192,7 +192,7 @@ FBullCowCount UBullCowCartridge::GetBullCows(const FString& PlayerGuess) const {
     return Count;
 }
 
-// Check If Player Guess Is A Word
+// Check If Player Guess Is A String
 bool UBullCowCartridge::IsString(const FString& PlayerString) const { 
     
     for (TCHAR Character : PlayerString) 
