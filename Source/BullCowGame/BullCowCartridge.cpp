@@ -104,7 +104,7 @@ void UBullCowCartridge::ProcessGuess(const FString& Guess) {
         if (GuessWordCount != HiddenWordCount)
         {
             PrintLine(TEXT("The Word Is %i Letters Long."), HiddenWordCount); 
-            PrintLine(TEXT("Try Again or Hit \"Esc\" to Exit."));
+            PrintLine(TEXT("Try Again."));
             return;
         }  
 
@@ -112,7 +112,7 @@ void UBullCowCartridge::ProcessGuess(const FString& Guess) {
         if (!IsIsogram(Guess))
         {
             PrintLine(TEXT("The Word Has No Repeating Letters."));
-            PrintLine(TEXT("Try Again or Hit \"Esc\" to Exit."));
+            PrintLine(TEXT("Try Again."));
             return;
         }
  
