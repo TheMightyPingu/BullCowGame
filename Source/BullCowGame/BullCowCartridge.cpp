@@ -64,7 +64,7 @@ void UBullCowCartridge::SetupGame() {
     PrintLine(TEXT("You Have %i Lives."), Lives);
 
     // Prompt To Type Guess
-    PrintLine(TEXT("Press Tab to Type In Your Guess:"));
+    PrintLine(TEXT("Type In Your Guess:"));
 
 }
 
@@ -81,6 +81,14 @@ void UBullCowCartridge::ProcessGuess(const FString& Guess) {
 
         //Input Word Count
         int32 GuessWordCount = Guess.Len();
+        
+        // Check If A Word
+        if (!IsString(Guess))
+        {
+            PrintLine(TEXT("Please Enter A Word."));
+            return;
+        }
+        
 
         // Check If Input Is Identical to Hidden Word
         if(Guess == HiddenWord) 
@@ -183,3 +191,19 @@ FBullCowCount UBullCowCartridge::GetBullCows(const FString& PlayerGuess) const {
     } 
     return Count;
 }
+
+// Check If Player Guess Is A Word
+bool UBullCowCartridge::IsString(const FString& PlayerString) const { 
+    
+    for (TCHAR Character : PlayerString) 
+    {
+        if (!isalpha(Character)) 
+        {
+            return false; 
+        }
+
+    }
+
+    return true;
+            
+} 
