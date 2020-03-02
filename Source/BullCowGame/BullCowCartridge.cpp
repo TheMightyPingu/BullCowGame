@@ -54,7 +54,7 @@ void UBullCowCartridge::SetupGame() {
     // Get Hidden Word Count
     HiddenWordCount = HiddenWord.Len();
 
-    // Set Lives To Equal Length of HiddenWord
+    // Set Lives To Equal 2 Times The Length of HiddenWord
     Lives = HiddenWordCount * 2;  
 
     // Show Hidden Word Characters
