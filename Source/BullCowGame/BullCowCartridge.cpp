@@ -73,12 +73,12 @@ void UBullCowCartridge::EndGame() {
 
     bGameOver = true;
     PrintLine(TEXT("The Hidden Word Was: %s."), *HiddenWord);
-    PrintLine(TEXT("\nHit Enter To Play Again or \"Esc\" to Exit."));
+    PrintLine(TEXT("\nHit Enter To Play Again."));
 
 }
 
 void UBullCowCartridge::ProcessGuess(const FString& Guess) {
-
+        
         //Input Word Count
         int32 GuessWordCount = Guess.Len();
         
@@ -115,6 +115,10 @@ void UBullCowCartridge::ProcessGuess(const FString& Guess) {
             PrintLine(TEXT("Try Again."));
             return;
         }
+
+        // Show Bulls and Cows Score For Player's Guess
+        FBullCowCount PlayerScore = GetBullCows(Guess);
+        PrintLine(TEXT("\nYou Have %i Bulls and %i Cows."), PlayerScore.Bulls, PlayerScore.Cows);
  
         --Lives;
         PrintLine(TEXT("Guess Again. You Have %i Lives Left."), Lives);
@@ -126,9 +130,7 @@ void UBullCowCartridge::ProcessGuess(const FString& Guess) {
             EndGame();
         }
 
-        // Show Bulls and Cows Score For Player's Guess
-        FBullCowCount PlayerScore = GetBullCows(Guess);
-        PrintLine(TEXT("You Have %i Bulls and %i Cows."), PlayerScore.Bulls, PlayerScore.Cows);
+
 }
 
 // Check If Guess Is Isogram
