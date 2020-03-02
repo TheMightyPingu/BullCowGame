@@ -1,2 +1,14 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+GameBullCowGame filter=lfs diff=lfs merge=lfs -text
+Engine filter=lfs diff=lfs merge=lfs -text
+C++ filter=lfs diff=lfs merge=lfs -text
+Course2 filter=lfs diff=lfs merge=lfs -text
+- filter=lfs diff=lfs merge=lfs -text
+Bull filter=lfs diff=lfs merge=lfs -text
+Cow filter=lfs diff=lfs merge=lfs -text
+GameBull filter=lfs diff=lfs merge=lfs -text
+Game filter=lfs diff=lfs merge=lfs -text
+C:UsersTimoDocumentsUnreal filter=lfs diff=lfs merge=lfs -text
+BullCowGame[[:space:]]-[[:space:]]Game[[:space:]]Application/** filter=lfs diff=lfs merge=lfs -text
+BullCowGame[[:space:]]-[[:space:]]Game[[:space:]]Application/ filter=lfs diff=lfs merge=lfs -text
